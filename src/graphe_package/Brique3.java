@@ -1,6 +1,6 @@
-package graphe;
+package graphe_package;
 
-public class Brique2 {
+public class Brique3 {
 
 	public static boolean test(Graphe graphe) {
 		return true;

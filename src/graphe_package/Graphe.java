@@ -1,4 +1,4 @@
-package graphe;
+package graphe_package;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +47,33 @@ public class Graphe {
 		aSupprimer.forEach((s2)->supprimerSommet(s2));
 		supprimerSommet(s);
 		return true;
+	}
+	
+	public boolean ajouterSommet(int cle){
+		if(this.graphe.containsKey(cle)){
+			return false;
+		} else {
+			this.graphe.put(cle, new ArrayList<Integer>());
+			return true;
+		}
+	}
+	
+	public boolean ajouterVoisin(int cle, int voisin){
+		if(! this.graphe.containsKey(cle)){
+			return false;
+		} else {
+			if(this.graphe.get(cle).contains(voisin)){
+				return false;
+			} else {
+				this.graphe.get(cle).add(voisin);
+				return true;
+			}
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Graphe [graphe=" + graphe + ", taille=" + taille + "]";
 	}
 	
 }

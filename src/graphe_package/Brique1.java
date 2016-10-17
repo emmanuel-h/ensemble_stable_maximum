@@ -1,4 +1,4 @@
-package graphe;
+package graphe_package;
 
 public class Brique1 {
 
