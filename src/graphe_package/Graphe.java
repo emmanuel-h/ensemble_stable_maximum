@@ -71,9 +71,13 @@ public class Graphe {
 		}
 	}
 
+	private String afficherListe(int cle, ArrayList<Integer> liste){
+		return "";
+	}
+	
 	@Override
 	public String toString() {
-		return "Graphe [graphe=" + graphe + ", taille=" + taille + "]";
+		return "Taille : " + this.taille+ "\nListes d'adjacences :\n" + this.graphe.toString();
 	}
 	
 }

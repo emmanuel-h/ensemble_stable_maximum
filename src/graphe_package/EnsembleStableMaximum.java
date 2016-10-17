@@ -43,12 +43,13 @@ public class EnsembleStableMaximum {
 		g.setTaille(Integer.parseInt(br.readLine().toString()));
 		String delim = " ";
 		while ((currentLine = br.readLine()) != null) {
-			StringTokenizer tok = new StringTokenizer(currentLine, delim, true);
+			StringTokenizer tok = new StringTokenizer(currentLine, delim);
 			String token = tok.nextToken().toString();
 			int sommet = Integer.parseInt(token.substring(0, token.length()-1));
 			g.ajouterSommet(sommet);
 			for (; tok.hasMoreTokens();) {
-				g.ajouterVoisin(sommet, Integer.parseInt(tok.nextToken().toString().replaceAll(",", "").replaceAll("[", "").replaceAll("]", "")));
+				int a = Integer.parseInt(tok.nextToken().toString().replaceAll(",", "").replaceAll("[\\[\\]]" , ""));
+				g.ajouterVoisin(sommet,a);
 			}
 		}
 		br.close();
@@ -58,14 +59,12 @@ public class EnsembleStableMaximum {
 	public static void main(String[] args) {
 		Graphe graphe = new Graphe();
 		try {
-			File f = new File("test.graphe");
-			graphe = lireFichier(f, graphe);
+			graphe = lireFichier(new File("test.graphe"), graphe);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		graphe.toString();
-		//int taille = algo(graphe);
-		//affichage(taille);
+		int taille = algo(graphe);
+		affichage(taille);
 	}
 
 }
