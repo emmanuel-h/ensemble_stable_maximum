@@ -47,6 +47,17 @@ public class Graphe {
         this.taille--;
         return true;
     }
+
+    public int getFirst() {
+        int i = 0;
+        while (i < this.taille){
+            if (this.graphe.containsKey(i)) {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
 	
 	public ArrayList<Integer> voisinage(int s){
 		return (this.graphe.get(s));
