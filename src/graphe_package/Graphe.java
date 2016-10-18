@@ -43,6 +43,7 @@ public class Graphe {
             ArrayList voisins2 = this.graphe.get(v);
             voisins2.remove((Object)s);
         }
+        //test
         this.graphe.remove(s);
         this.taille--;
         return true;
