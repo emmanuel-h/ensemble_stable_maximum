@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 public class EnsembleStableMaximum {
 
 	private static void affichage(int taille) {
-		System.out.println("La taille de la bite de ta mère est " + taille);
+		System.out.println("La taille de la bite de ta mï¿½re est " + taille);
 	}
 
 	private static int algo(Graphe graphe) {
@@ -63,8 +63,8 @@ public class EnsembleStableMaximum {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int taille = algo(graphe);
-		affichage(taille);
+		//int taille = algo(graphe);
+		//affichage(taille);
 	}
 
 }
