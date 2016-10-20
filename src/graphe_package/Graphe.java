@@ -92,6 +92,7 @@ public class Graphe {
 			return false;
 		} else {
 			this.graphe.put(cle, new ArrayList<Integer>());
+			this.taille++;
 			return true;
 		}
 	}

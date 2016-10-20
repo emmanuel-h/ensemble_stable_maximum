@@ -28,8 +28,8 @@ public class Brique3 {
 		}
 		clone.supprimerSommet(v);
 		clone.supprimerSommet(voisinSupp);
-	//	System.out.println("Graphe"+graphe);
-	//	System.out.println("Clone"+clone);
+		System.out.println("Graphe"+graphe);
+		System.out.println("Clone"+clone);
 		return clone;
 	}
 
