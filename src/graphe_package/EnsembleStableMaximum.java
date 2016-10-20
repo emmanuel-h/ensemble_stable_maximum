@@ -24,8 +24,9 @@ public class EnsembleStableMaximum {
 				if(Brique2.test(graphe)){
 					return algo(Brique2.op(graphe));
 				} else {
-					if(Brique3.test(graphe)){
-						return 1 + algo(Brique3.op(graphe));
+					int sommet_pliable;
+					if((sommet_pliable=Brique3.test(graphe))!= -1 ){
+						return 1 + algo(Brique3.op(graphe,sommet_pliable));
 					} else {
 						//Brique 4
 					}
@@ -63,6 +64,10 @@ public class EnsembleStableMaximum {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		int sommet_pliable=0;
+		if((sommet_pliable=Brique3.test(graphe))!= -1 ){
+			Brique3.op(graphe, sommet_pliable);
+		} 
 		//int taille = algo(graphe);
 		//affichage(taille);
 	}

@@ -63,6 +63,11 @@ public class Graphe {
 		return (this.graphe.get(s));
 	}
 
+	public boolean estVoisin(int s1, int s2){
+		return this.graphe.get(s1).contains(s2);
+	}
+	
+	
 	//	Je supprime s ainsi que tous ses voisins.
 	public boolean suppressionSommetsVoisins(int s){
 		if(!this.graphe.containsKey(s)){
@@ -113,4 +118,23 @@ public class Graphe {
 		return "Taille : " + this.taille+ "\nListes d'adjacences :\n" + this.graphe.toString();
 	}
 	
+	public Graphe clone(){
+		Graphe clone = new Graphe(deepCopyMapIntList(this.graphe));
+		return clone;
+	}
+	
+	public static Map<Integer, ArrayList<Integer>> deepCopyMapIntList(Map<Integer, ArrayList<Integer>> original) {
+		Map<Integer, ArrayList<Integer>> copy = new HashMap<>(original.size());
+		for (int i : original.keySet()) {
+			ArrayList<Integer> list = original.get(i);
+			copy.put(i, (ArrayList<Integer>) list.clone());
+		}
+		return copy;
+	}
+	
+	
+	
 }
+
+
+
