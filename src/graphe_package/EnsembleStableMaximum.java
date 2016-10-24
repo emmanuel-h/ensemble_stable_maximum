@@ -43,7 +43,6 @@ public class EnsembleStableMaximum {
 		InputStreamReader ipsr = new InputStreamReader(ips);
 		BufferedReader br = new BufferedReader(ipsr);
 		String currentLine;
-		g.setTaille(Integer.parseInt(br.readLine().toString()));
 		String delim = " ";
 		while ((currentLine = br.readLine()) != null) {
 			StringTokenizer tok = new StringTokenizer(currentLine, delim);

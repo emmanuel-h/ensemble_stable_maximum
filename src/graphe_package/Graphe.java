@@ -6,18 +6,15 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Graphe {
-	
+
 	private Map<Integer,ArrayList<Integer>> graphe;
-	private int taille;
 	
 	public Graphe (){
 		this.graphe = new HashMap<>();
-		this.taille = 0;
 	}
 	
 	public Graphe(Map<Integer, ArrayList<Integer>> g){
 		this.graphe = new HashMap<>(g);
-		this.taille = g.size();
 	}
 
 	public Map<Integer, ArrayList<Integer>> getGraphe() {
@@ -25,11 +22,7 @@ public class Graphe {
 	}
 
 	public int getTaille() {
-		return taille;
-	}
-
-	public void setTaille(int taille) {
-		this.taille = taille;
+		return this.graphe.size();
 	}
 
 	// Je supprime s ainsi que ses occurences chez ses voisins.
@@ -44,13 +37,12 @@ public class Graphe {
             voisins2.remove((Object)s);
         }
         this.graphe.remove(s);
-        this.taille--;
         return true;
     }
 
     public int getFirst() {
         int i = 0;
-        while (i < this.taille){
+        while (i < this.graphe.size()){
             if (this.graphe.containsKey(i)) {
                 return i;
             }
@@ -83,7 +75,6 @@ public class Graphe {
        // aSupprimer.forEach(this::supprimerSommet);
         //aSupprimer.forEach((s2)->supprimerSommet(s2));
 		this.graphe.remove(s);
-        this.taille--;
 		return true;
 	}
 	
@@ -92,7 +83,6 @@ public class Graphe {
 			return false;
 		} else {
 			this.graphe.put(cle, new ArrayList<Integer>());
-			this.taille++;
 			return true;
 		}
 	}
@@ -116,7 +106,7 @@ public class Graphe {
 	
 	@Override
 	public String toString() {
-		return "Taille : " + this.taille+ "\nListes d'adjacences :\n" + this.graphe.toString();
+		return "Taille : " + this.graphe.size()+ "\nListes d'adjacences :\n" + this.graphe.toString();
 	}
 	
 	public Graphe clone(){
@@ -136,6 +126,3 @@ public class Graphe {
 	
 	
 }
-
-
-

@@ -14,7 +14,6 @@ public class Brique1 {
         sommetsMarques.add(sommetCourant);
         Graphe c = new Graphe();        // La composante connexe
         c.getGraphe().put(sommetCourant,(ArrayList<Integer>)g.voisinage(sommetCourant).clone());
-        c.setTaille(c.getTaille()+1);
         Graphe gSansC = g.clone();   // Le graphe sans la composante connexe
         gSansC.supprimerSommet(sommetCourant);
 
@@ -33,7 +32,6 @@ public class Brique1 {
                         fifo.add(voisin);
                         sommetsMarques.add(voisin);
                         c.getGraphe().put(voisin,(ArrayList<Integer>)g.voisinage(voisin).clone());
-                        c.setTaille(c.getTaille()+1);
                         gSansC.supprimerSommet(voisin);
                     }
             }
