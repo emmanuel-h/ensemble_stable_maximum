@@ -7,31 +7,33 @@ public class Brique1 {
 
 	public static Graphe[] test(Graphe g){
         LinkedList<Integer> fifo = new LinkedList<>();          // La file du parcours en largeur
-        ArrayList<Integer> sommetsMarques = new ArrayList<>();  // La liste des sommets déjà rencontrés
+        ArrayList<Integer> sommetsMarques = new ArrayList<>();  // La liste des sommets dï¿½jï¿½ rencontrï¿½s
         //Initialisation
         int sommetCourant = g.getFirst();
         fifo.add(sommetCourant);
         sommetsMarques.add(sommetCourant);
         Graphe c = new Graphe();        // La composante connexe
         c.getGraphe().put(sommetCourant,(ArrayList<Integer>)g.voisinage(sommetCourant).clone());
+        c.setTaille(c.getTaille()+1);
         Graphe gSansC = g.clone();   // Le graphe sans la composante connexe
         gSansC.supprimerSommet(sommetCourant);
 
         //Tant que la file n'est pas vide
         while (! fifo.isEmpty()){
-            //je défile le premier sommet.
+            //je dï¿½file le premier sommet.
             sommetCourant = fifo.getFirst();
             fifo.removeFirst();
 
             // Pour tous les voisins du sommet courant
             for(int voisin : g.getGraphe().get(sommetCourant)){
 
-                    // Si voisin n'a pas encoré été rencontré
+                    // Si voisin n'a pas encorï¿½ ï¿½tï¿½ rencontrï¿½
                     if(! sommetsMarques.contains(voisin)){
 
                         fifo.add(voisin);
                         sommetsMarques.add(voisin);
                         c.getGraphe().put(voisin,(ArrayList<Integer>)g.voisinage(voisin).clone());
+                        c.setTaille(c.getTaille()+1);
                         gSansC.supprimerSommet(voisin);
                     }
             }

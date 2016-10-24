@@ -22,8 +22,9 @@ public class EnsembleStableMaximum {
 			if((connexe=Brique1.test(graphe))!= null){
 				return algo(connexe[0]) + algo(connexe[1]);
 			} else {
-				if(Brique2.test(graphe)){
-					return algo(Brique2.op(graphe));
+				int sommet_dominant;
+				if((sommet_dominant=Brique2.test(graphe))!= -1){
+					return algo(Brique2.op(graphe,sommet_dominant));
 				} else {
 					int sommet_pliable;
 					if((sommet_pliable=Brique3.test(graphe))!= -1 ){
@@ -67,11 +68,13 @@ public class EnsembleStableMaximum {
 		}
 		Graphe[] connexe;
 		connexe=Brique1.test(graphe);
-		
-		/*int sommet_pliable=0;
+
+		Graphe g=new Graphe();
+		int sommet_pliable=0;
 		if((sommet_pliable=Brique3.test(graphe))!= -1 ){
-			Brique3.op(graphe, sommet_pliable);
-		} */
+			g=Brique3.op(graphe, sommet_pliable);
+		}
+
 		//int taille = algo(graphe);
 		//affichage(taille);
 	}
