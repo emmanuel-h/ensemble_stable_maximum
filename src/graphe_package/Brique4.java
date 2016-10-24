@@ -20,6 +20,9 @@ public class Brique4 {
     }
 
     public static boolean clique(List<Integer> voisins, Graphe g){
+    	if(voisins.size()==0){
+    		return true;
+    	}
         for(int v:voisins){
             for(int u:voisins){
                 if(v != u){
