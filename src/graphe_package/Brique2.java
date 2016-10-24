@@ -21,7 +21,6 @@ public class Brique2 {
                     }
 
 					if (test) {
-						System.out.println("test");
                         return second.getKey();
                     }
                 }
@@ -34,8 +33,6 @@ public class Brique2 {
 
 		Graphe clone = graphe.clone();
         clone.supprimerSommet(v);
-		System.out.println("Graphe"+graphe);
-		System.out.println("Clone"+clone);
 		return clone;
 	}
 

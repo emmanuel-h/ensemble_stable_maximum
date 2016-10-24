@@ -8,13 +8,16 @@ import java.util.Map;
 public class Graphe {
 
 	private Map<Integer,ArrayList<Integer>> graphe;
+	private int tailleInitiale;
 	
 	public Graphe (){
 		this.graphe = new HashMap<>();
+		tailleInitiale = this.graphe.size();
 	}
 	
-	public Graphe(Map<Integer, ArrayList<Integer>> g){
+	public Graphe(Map<Integer, ArrayList<Integer>> g, int tailleInitiale){
 		this.graphe = new HashMap<>(g);
+		this.tailleInitiale=tailleInitiale;
 	}
 
 	public Map<Integer, ArrayList<Integer>> getGraphe() {
@@ -42,7 +45,7 @@ public class Graphe {
 
     public int getFirst() {
         int i = 0;
-        while (i < this.graphe.size()){
+        while (i < this.tailleInitiale){
             if (this.graphe.containsKey(i)) {
                 return i;
             }
@@ -69,7 +72,6 @@ public class Graphe {
         Iterator aSupprimerIt = aSupprimer.iterator();
         while (aSupprimerIt.hasNext()){
             int i = (Integer) aSupprimerIt.next();
-            System.out.println(i);
             supprimerSommet(i);
         }
        // aSupprimer.forEach(this::supprimerSommet);
@@ -110,7 +112,7 @@ public class Graphe {
 	}
 	
 	public Graphe clone(){
-		Graphe clone = new Graphe(deepCopyMapIntList(this.graphe));
+		Graphe clone = new Graphe(deepCopyMapIntList(this.graphe), this.tailleInitiale);
 		return clone;
 	}
 	
@@ -122,7 +124,16 @@ public class Graphe {
 		}
 		return copy;
 	}
-	
-	
-	
+
+	public int nombreVoisins (int s){
+		return this.graphe.get(s).size();
+	}
+
+	public void setTailleInitiale(int tailleInitiale) {
+		this.tailleInitiale = tailleInitiale;
+	}
+
+	public int getTailleInitiale() {
+		return tailleInitiale;
+	}
 }

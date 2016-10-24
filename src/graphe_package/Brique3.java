@@ -25,11 +25,10 @@ public class Brique3 {
 		ArrayList<Integer> voisinageSupp=clone.voisinage(voisinSupp);
 		for (int new_voisin:voisinageSupp){
 			clone.ajouterVoisin(voisinAdd, new_voisin);
+			clone.ajouterVoisin(new_voisin,voisinAdd);
 		}
 		clone.supprimerSommet(v);
 		clone.supprimerSommet(voisinSupp);
-		System.out.println("Graphe"+graphe);
-		System.out.println("Clone"+clone);
 		return clone;
 	}
 

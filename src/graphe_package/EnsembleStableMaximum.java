@@ -4,38 +4,37 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class EnsembleStableMaximum {
 
 	private static void affichage(int taille) {
-		System.out.println("La taille de la bite de ta m�re est " + taille);
+		System.out.println("La taille de la bite de ta mère est " + taille);
 	}
 
 	private static int algo(Graphe graphe) {
 		if(graphe.getTaille()<=1){
-			return graphe.getTaille();
+            return graphe.getTaille();
 		} else {
 			Graphe[]connexe;
 			if((connexe=Brique1.test(graphe))!= null){
-				return algo(connexe[0]) + algo(connexe[1]);
+                return algo(connexe[0]) + algo(connexe[1]);
 			} else {
 				int sommet_dominant;
 				if((sommet_dominant=Brique2.test(graphe))!= -1){
-					return algo(Brique2.op(graphe,sommet_dominant));
+                    return algo(Brique2.op(graphe,sommet_dominant));
 				} else {
 					int sommet_pliable;
 					if((sommet_pliable=Brique3.test(graphe))!= -1 ){
-						return 1 + algo(Brique3.op(graphe,sommet_pliable));
+                        return 1 + algo(Brique3.op(graphe,sommet_pliable));
 					} else {
-						//Brique 4
+                        int v = Brique4.getV(graphe);
+                        return Math.max(algo(Brique4.miroir(v, graphe)),1+algo(Brique4.voisins(v, graphe)));
 					}
 				}
 			}
 		}
-		return 0;
 	}
 
 	private static Graphe lireFichier(File file, Graphe g) throws IOException {
@@ -43,6 +42,7 @@ public class EnsembleStableMaximum {
 		InputStreamReader ipsr = new InputStreamReader(ips);
 		BufferedReader br = new BufferedReader(ipsr);
 		String currentLine;
+        g.setTailleInitiale(Integer.parseInt(br.readLine().toString()));
 		String delim = " ";
 		while ((currentLine = br.readLine()) != null) {
 			StringTokenizer tok = new StringTokenizer(currentLine, delim);
@@ -65,17 +65,9 @@ public class EnsembleStableMaximum {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Graphe[] connexe;
-		connexe=Brique1.test(graphe);
 
-		Graphe g=new Graphe();
-		int sommet_pliable=0;
-		if((sommet_pliable=Brique3.test(graphe))!= -1 ){
-			g=Brique3.op(graphe, sommet_pliable);
-		}
-
-		//int taille = algo(graphe);
-		//affichage(taille);
+        int taille = algo(graphe);
+		affichage(taille);
 	}
 
 }
