@@ -9,6 +9,11 @@ import java.util.Map;
  */
 public class Brique4 {
 
+    /**
+     * Retourne le sommet possédant le plus de voisins
+     * @param g le graphe
+     * @return l'index du sommet
+     */
     public static int getV(Graphe g){
         int v = g.getFirst();
         for (Map.Entry<Integer, ArrayList<Integer>> entry : g.getGraphe().entrySet()){
@@ -19,6 +24,12 @@ public class Brique4 {
         return v;
     }
 
+    /**
+     * Teste si la liste est une clique
+     * @param voisins   la liste à tester
+     * @param g         le graphe
+     * @return true si c'est une clique
+     */
     public static boolean clique(List<Integer> voisins, Graphe g){
     	if(voisins.size()==0){
     		return true;
@@ -35,6 +46,12 @@ public class Brique4 {
         return true;
     }
 
+    /**
+     * Cherche les miroirs d'un sommet et retourne le graphe modifié
+     * @param v         le sommet à travailler
+     * @param graphe    le graphe
+     * @return          Le graphe moins le sommet et ses miroirs
+     */
     public static Graphe miroir(int v, Graphe graphe){
         Graphe g = graphe.clone();
         List<Integer> sommetsASupprimer = new ArrayList<>();
@@ -70,6 +87,12 @@ public class Brique4 {
         return g;
     }
 
+    /**
+     * Renvoie le graphe sans un sommet et ses voisins
+     * @param v     le sommet
+     * @param g     le graphe
+     * @return  le graphe moins le sommet et ses voisins
+     */
     public static Graphe voisins(int v, Graphe g){
         Graphe g_voisins = g.clone();
         g_voisins.suppressionSommetsVoisins(v);

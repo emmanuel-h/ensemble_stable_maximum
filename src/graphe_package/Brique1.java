@@ -7,7 +7,7 @@ public class Brique1 {
 
 	public static Graphe[] test(Graphe g){
         LinkedList<Integer> fifo = new LinkedList<>();          // La file du parcours en largeur
-        ArrayList<Integer> sommetsMarques = new ArrayList<>();  // La liste des sommets d�j� rencontr�s
+        ArrayList<Integer> sommetsMarques = new ArrayList<>();  // La liste des sommets déjà rencontrés
         //Initialisation
         int sommetCourant = g.getFirst();
         fifo.add(sommetCourant);
@@ -20,14 +20,14 @@ public class Brique1 {
 
         //Tant que la file n'est pas vide
         while (! fifo.isEmpty()){
-            //je d�file le premier sommet.
+            //je défile le premier sommet.
             sommetCourant = fifo.getFirst();
             fifo.removeFirst();
 
             // Pour tous les voisins du sommet courant
             for(int voisin : g.getGraphe().get(sommetCourant)){
 
-                    // Si voisin n'a pas encor� �t� rencontr�
+                    // Si voisin n'a pas encore été rencontré
                     if(! sommetsMarques.contains(voisin)){
 
                         fifo.add(voisin);
@@ -45,13 +45,5 @@ public class Brique1 {
         } else {
             return null;
         }
-	}
-
-	public static Graphe op1(Graphe graphe) {
-		return graphe;
-	}
-
-	public static Graphe op2(Graphe graphe) {
-		return graphe;
 	}
 }

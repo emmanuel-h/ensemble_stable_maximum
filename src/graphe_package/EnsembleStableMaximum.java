@@ -9,10 +9,21 @@ import java.util.StringTokenizer;
 
 public class EnsembleStableMaximum {
 
+    /**
+     * Affiche le résultat
+     *
+     * @param taille Le résultat de l'algorithme
+     */
 	private static void affichage(int taille) {
-		System.out.println("La taille du plus grans ensemble stable est " + taille);
+		System.out.println("La taille du plus grand ensemble stable est " + taille);
 	}
 
+    /**
+     * L'algorithme de Fromin, Grandoni et Kratsch
+     *
+     * @param graphe le graphe en entrée
+     * @return la taille du sous ensemble maximum
+     */
 	private static int algo(Graphe graphe) {
 		if(graphe.getTaille()<=1){
             return graphe.getTaille();
@@ -37,18 +48,30 @@ public class EnsembleStableMaximum {
 		}
 	}
 
+    /**
+     * Lit le fichier donné en entrée pour former le graphe
+     *
+     * @param file  le fichier à parser
+     * @param g     le graphe vierge à remplir
+     * @return      le graphe initialisé
+     * @throws IOException
+     */
 	private static Graphe lireFichier(File file, Graphe g) throws IOException {
 		FileInputStream ips = new FileInputStream(file);
 		InputStreamReader ipsr = new InputStreamReader(ips);
 		BufferedReader br = new BufferedReader(ipsr);
 		String currentLine;
+        // On commence par lire la taille
         g.setTailleInitiale(Integer.parseInt(br.readLine().toString()));
 		String delim = " ";
+        // On découpe la ligne suivant le délimiteur "espace"
 		while ((currentLine = br.readLine()) != null) {
 			StringTokenizer tok = new StringTokenizer(currentLine, delim);
 			String token = tok.nextToken().toString();
+            // Le premier token lu est le numero du sommet
 			int sommet = Integer.parseInt(token.substring(0, token.length()-1));
 			g.ajouterSommet(sommet);
+            // Tous les autres tokens sont ses voisins
 			for (; tok.hasMoreTokens();) {
                 String s = tok.nextToken().toString();
                 if(!s.equals("[]")) {
@@ -61,14 +84,22 @@ public class EnsembleStableMaximum {
 		return g;
 	}
 
+    /**
+     * Main
+     * @par les arguments
+     */
 	public static void main(String[] args) {
 		Graphe graphe = new Graphe();
-		try {
-			graphe = lireFichier(new File("test.graphe"), graphe);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		affichage(algo(graphe));
+        if(args.length != 1){
+            System.out.println("Argument 1 invalide, mettre le fichier .graphe");
+        } else {
+            try {
+                graphe = lireFichier(new File(args[0]), graphe);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            affichage(algo(graphe));
+        }
 	}
 
 }
