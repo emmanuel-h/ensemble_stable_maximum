@@ -10,38 +10,25 @@ import java.util.StringTokenizer;
 public class EnsembleStableMaximum {
 
 	private static void affichage(int taille) {
-		System.out.println("La taille de la bite de ta mère est " + taille);
+		System.out.println("La taille du plus grans ensemble stable est " + taille);
 	}
 
 	private static int algo(Graphe graphe) {
 		if(graphe.getTaille()<=1){
-			System.out.println("cas de base");
-			System.out.println(graphe.getTaille());
             return graphe.getTaille();
 		} else {
 			Graphe[]connexe;
 			if((connexe=Brique1.test(graphe))!= null){
-				System.out.println(graphe);
-				System.out.println("Brique 1:");
-				System.out.println("Connexe 1: "+connexe[0]);
-				System.out.println("Connexe 2: "+connexe[1]);
                 return algo(connexe[0]) + algo(connexe[1]);
 			} else {
 				int sommet_dominant;
 				if((sommet_dominant=Brique2.test(graphe))!= -1){
-					System.out.println(graphe);
-					System.out.println("Brique 2:");
-					System.out.println("Sommet dominant: "+sommet_dominant);
                     return algo(Brique2.op(graphe,sommet_dominant));
 				} else {
 					int sommet_pliable;
 					if((sommet_pliable=Brique3.test(graphe))!= -1 ){
-						System.out.println("Brique 3:");
-						System.out.println("Sommet pliable: "+sommet_pliable);
                         return 1 + algo(Brique3.op(graphe,sommet_pliable));
 					} else {
-						System.out.println(graphe);
-						System.out.println("Brique 4:");
                         int v = Brique4.getV(graphe);
                         return Math.max(algo(Brique4.miroir(v, graphe)),1+algo(Brique4.voisins(v, graphe)));
 					}
@@ -63,8 +50,11 @@ public class EnsembleStableMaximum {
 			int sommet = Integer.parseInt(token.substring(0, token.length()-1));
 			g.ajouterSommet(sommet);
 			for (; tok.hasMoreTokens();) {
-				int a = Integer.parseInt(tok.nextToken().toString().replaceAll(",", "").replaceAll("[\\[\\]]" , ""));
-				g.ajouterVoisin(sommet,a);
+                String s = tok.nextToken().toString();
+                if(!s.equals("[]")) {
+                    int a = Integer.parseInt(s.replaceAll(",", "").replaceAll("[\\[\\]]", ""));
+                    g.ajouterVoisin(sommet, a);
+                }
 			}
 		}
 		br.close();
@@ -78,9 +68,7 @@ public class EnsembleStableMaximum {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-        int taille = algo(graphe);
-		affichage(taille);
+		affichage(algo(graphe));
 	}
 
 }
