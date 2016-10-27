@@ -32,18 +32,17 @@ public class Brique3 {
 	 * @return le graphe modifié
 	 */
 	public static Graphe run(Graphe graphe, int v) {
-		Graphe clone=graphe.clone();
-		int voisinSupp=clone.getGraphe().get(v).get(1);
-		int voisinAdd=clone.getGraphe().get(v).get(0);
-		ArrayList<Integer> voisinageSupp=clone.voisinage(voisinSupp);
+		int voisinSupp=graphe.getGraphe().get(v).get(1);
+		int voisinAdd=graphe.getGraphe().get(v).get(0);
+		ArrayList<Integer> voisinageSupp=graphe.voisinage(voisinSupp);
 
 		for (int new_voisin:voisinageSupp){
-			clone.ajouterVoisin(voisinAdd, new_voisin);
-			clone.ajouterVoisin(new_voisin,voisinAdd);
+			graphe.ajouterVoisin(voisinAdd, new_voisin);
+			graphe.ajouterVoisin(new_voisin,voisinAdd);
 		}
-		clone.supprimerSommet(v);
-		clone.supprimerSommet(voisinSupp);
-		return clone;
+		graphe.supprimerSommet(v);
+		graphe.supprimerSommet(voisinSupp);
+		return graphe;
 	}
 
 }

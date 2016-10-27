@@ -55,9 +55,8 @@ public class Brique2 {
 	 */
 	public static Graphe run(Graphe graphe, int v) {
 
-		Graphe clone = graphe.clone();
-        clone.supprimerSommet(v);
-		return clone;
+		graphe.supprimerSommet(v);
+		return graphe;
 	}
 
 }
