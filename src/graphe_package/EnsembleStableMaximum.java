@@ -26,22 +26,27 @@ public class EnsembleStableMaximum {
      */
 	private static int algo(Graphe graphe) {
 		if(graphe.getTaille()<=1){
-            return graphe.getTaille();
+			System.out.println(0);
+			return graphe.getTaille();
 		} else {
 			Graphe[]connexe;
 			if((connexe=Brique1.test(graphe))!= null){
-                return algo(connexe[0]) + algo(connexe[1]);
+				System.out.println(1);
+				return algo(connexe[0]) + algo(connexe[1]);
 			} else {
 				int sommet_dominant;
 				if((sommet_dominant=Brique2.test(graphe))!= -1){
-                    return algo(Brique2.op(graphe,sommet_dominant));
+					System.out.println(2);
+					return algo(Brique2.run(graphe,sommet_dominant));
 				} else {
 					int sommet_pliable;
 					if((sommet_pliable=Brique3.test(graphe))!= -1 ){
-                        return 1 + algo(Brique3.op(graphe,sommet_pliable));
+						System.out.println(3);
+						return 1 + algo(Brique3.run(graphe,sommet_pliable));
 					} else {
                         int v = Brique4.getV(graphe);
-                        return Math.max(algo(Brique4.miroir(v, graphe)),1+algo(Brique4.voisins(v, graphe)));
+						System.out.println(4);
+						return Math.max(algo(Brique4.miroir(v, graphe)),1+algo(Brique4.voisins(v, graphe)));
 					}
 				}
 			}

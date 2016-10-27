@@ -31,7 +31,7 @@ public class Brique3 {
 	 * @param v le sommet de degré 2
 	 * @return le graphe modifié
 	 */
-	public static Graphe op(Graphe graphe, int v) {
+	public static Graphe run(Graphe graphe, int v) {
 		Graphe clone=graphe.clone();
 		int voisinSupp=clone.getGraphe().get(v).get(1);
 		int voisinAdd=clone.getGraphe().get(v).get(0);

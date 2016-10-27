@@ -26,7 +26,7 @@ public class Brique2 {
 
 				// Si ces deux sommets sont voisins
 				if(graphe.estVoisin(first.getKey(), second.getKey())){
-					test =true;
+					test = true;
 
 					// Si les deux sommets sont différents, on vérifie que chaque voisin du premier est voisin du second
 					if(first.getKey() != second.getKey()) {
@@ -53,7 +53,7 @@ public class Brique2 {
 	 * @param v le sommet dominant
 	 * @return le graphe modifié
 	 */
-	public static Graphe op(Graphe graphe, int v) {
+	public static Graphe run(Graphe graphe, int v) {
 
 		Graphe clone = graphe.clone();
         clone.supprimerSommet(v);
