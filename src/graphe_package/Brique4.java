@@ -30,7 +30,7 @@ public class Brique4 {
      * @param g         le graphe
      * @return true si c'est une clique
      */
-    public static boolean clique(List<Integer> voisins, Graphe g){
+    private static boolean clique(List<Integer> voisins, Graphe g){
     	if(voisins.size()==0){
     		return true;
     	}
@@ -94,8 +94,7 @@ public class Brique4 {
      * @return  le graphe moins le sommet et ses voisins
      */
     public static Graphe voisins(int v, Graphe g){
-        Graphe g_voisins = g.clone();
-        g_voisins.suppressionSommetsVoisins(v);
-        return g_voisins;
+        g.suppressionSommetsVoisins(v);
+        return g;
     }
 }
